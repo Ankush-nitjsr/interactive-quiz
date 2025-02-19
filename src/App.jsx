@@ -6,7 +6,7 @@ import HistoryPage from "./pages/HistoryPage";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App flex items-center justify-center h-screen">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
