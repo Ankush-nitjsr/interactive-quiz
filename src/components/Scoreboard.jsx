@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useQuizStore } from "../stores/useQuizStore";
-import calculateTotalScore from "../utils/calculateScore";
+import calculateTotalScore from "../utils/calculateTotalScore";
 
 export default function Scoreboard() {
   // Access the questions and score from the store
