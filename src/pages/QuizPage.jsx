@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { useQuizStore } from "../stores/useQuizStore";
 import QuizCard from "../components/QuizCard";
 import useFetchQuizData from "../hooks/useFetchQuizData";
+import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 
 const QuizPage = () => {
   const { quizData } = useFetchQuizData();
 
-  const { questions, setQuestions } = useQuizStore();
+  const { questions, setQuestions, score, setScore } = useQuizStore();
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrectOption, setIsCorrectOption] = useState(false);
@@ -32,29 +33,23 @@ const QuizPage = () => {
   const handleAnswer = (selectedOption, isCorrect) => {
     setSelectedOption(selectedOption); // Set the selected answer
     setIsCorrectOption(isCorrect); // Set whether the answer is correct
+    setTimeLeft(0); // Stop the timer
 
     if (isCorrect) {
       setScore(score + 1); // Update score if the answer is correct
     }
   };
 
-  const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-      setTimeLeft(30);
-      setSelectedOption(null); // Reset selected answer for the next question
-      setIsCorrectOption(false); // Reset correctness for the next question
-    } else {
-      saveQuizHistory();
-      alert(`Quiz Completed! Your Score: ${score}`);
-    }
-  };
-
   const saveQuizHistory = () => {};
 
   return (
-    <div className="p-4 text-center">
+    <div className="flex flex-col justify-between p-4 text-center w-[40%] h-[60%] bg-gradient-to-b from-gray-100 to-purple-200 rounded-lg shadow-lg">
+      {/* Display the Header component */}
+      <Header timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
+
+      {/* Display the QuizCard component */}
       <QuizCard
+        currentQuestion={currentQuestion}
         question={
           questions[currentQuestion]?.question || "No question available"
         }
@@ -64,21 +59,17 @@ const QuizPage = () => {
         selectedOption={selectedOption}
         isCorrectOption={isCorrectOption}
       />
-      {/* Show correct answer and next button */}
-      <div>
-        {(selectedOption !== null || timeLeft === 0) && (
-          <p className="mt-4">
-            Correct Option:{" "}
-            {questions[currentQuestion]?.options.find((o) => o.isCorrect)?.text}
-          </p>
-        )}
-        <button
-          className="px-4 py-2 bg-blue-500 hover:bg-blue-400 text-white rounded mt-2"
-          onClick={handleNext}
-        >
-          Next
-        </button>
-      </div>
+
+      {/* Display the Footer component */}
+      <Footer
+        currentQuestion={currentQuestion}
+        setCurrentQuestion={setCurrentQuestion}
+        questions={questions}
+        setTimeLeft={setTimeLeft}
+        setSelectedOption={setSelectedOption}
+        setIsCorrectOption={setIsCorrectOption}
+        saveQuizHistory={saveQuizHistory}
+      />
     </div>
   );
 };
