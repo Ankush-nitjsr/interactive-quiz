@@ -5,6 +5,7 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Folder Structure](#folder-structure)
 - [Getting Started](#getting-started)
 - [Deployment](#deployment)
 - [Contributing](#contributing)
@@ -40,6 +41,49 @@ The **Interactive Quiz App** is a web application built with ReactJS that allows
 - **State Management**: React Hooks
 - **Data Storage**: IndexedDB
 - **Deployment**: Vercel
+
+## Folder Structure
+
+```bash
+interactive-quiz/
+│── public/
+│── src/
+│   ├── assets/              # For images, icons, etc.
+│   ├── components/          # Reusable components
+|   |   ├── footer
+|   |   |    ├── Footer.jsx
+|   |   ├── header
+|   |   |    ├── Header.jsx
+|   |   ├── ui
+|   |   |    ├── OptionButton.jsx
+│   │   ├── QuizCard.jsx
+│   │   ├── Timer.jsx
+│   │   ├── Scoreboard.jsx
+│   │   ├── History.jsx
+│   ├── data/             # Questions data
+│   │   ├── quizData.json
+│   ├── hooks/             # Custome hook
+│   │   ├── useFetchQuizData.js
+│   ├── pages/               # Page components
+│   │   ├── Home.jsx
+│   │   ├── QuizPage.jsx
+│   │   ├── HistoryPage.jsx
+│   ├── stores/             # Zustand store
+│   │   ├── useQuizStore.js
+│   ├── utils/               # Utility functions
+│   │   ├── calculateTotalScore.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── index.css
+│   ├── App.css
+│── index.html
+│── README.md
+│── package-lock.json
+│── package.json
+│── .gitignore
+│── vite.config.js
+│── eslint.config.js
+```
 
 ## Getting Started
 
