@@ -26,7 +26,7 @@ export default function Scoreboard() {
         <h2 className="text-3xl font-bold mb-4 text-purple-400">Your Score</h2>
         <p className="text-6xl font-semibold text-purple-400">{score}</p>
       </div>
-      <div className="flex flex-col w-[40%] mx-auto">
+      <div className="flex flex-col w-[42%] mx-auto">
         <div className="flex justify-between items-center space-x-2 px-8">
           <p className="text-sm text-left text-yellow-600">Total Questions :</p>
           <p className="text-md text-right text-yellow-600">{totalQuestions}</p>
