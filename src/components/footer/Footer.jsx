@@ -8,6 +8,7 @@ export default function Footer({
   setTimeLeft,
   setSelectedOption,
   setIsCorrectOption,
+  setInputAnswer,
   saveQuizHistory,
 }) {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function Footer({
       setCurrentQuestion(currentQuestion + 1);
       setTimeLeft(30);
       setSelectedOption(null); // Reset selected answer for the next question
+      setInputAnswer(0); // Reset input answer for the next question
       setIsCorrectOption(false); // Reset correctness for the next question
     } else {
       saveQuizHistory();
@@ -29,10 +31,12 @@ export default function Footer({
         {currentQuestion + 1} of {questions.length} Questions
       </p>
       <button
-        className="bg-purple-400 p-2 rounded-md text-white"
+        className="bg-purple-400 hover:bg-purple-600 p-2 rounded-md text-white"
         onClick={handleNext}
       >
-        Next Question
+        {currentQuestion === questions.length - 1
+          ? "Finish Quiz"
+          : "Next Question"}
       </button>
     </div>
   );
