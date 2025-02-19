@@ -10,6 +10,8 @@ const QuizPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [isCorrectOption, setIsCorrectOption] = useState(false);
 
   useEffect(() => {
     setQuestions(quizData.questions);
@@ -27,11 +29,21 @@ const QuizPage = () => {
     return <p className="text-center text-red-500">Loading questions...</p>;
   }
 
-  const handleAnswer = (isCorrect) => {
-    if (isCorrect) setScore(score + 1);
+  const handleAnswer = (selectedOption, isCorrect) => {
+    setSelectedOption(selectedOption); // Set the selected answer
+    setIsCorrectOption(isCorrect); // Set whether the answer is correct
+
+    if (isCorrect) {
+      setScore(score + 1); // Update score if the answer is correct
+    }
+  };
+
+  const handleNext = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setTimeLeft(30);
+      setSelectedOption(null); // Reset selected answer for the next question
+      setIsCorrectOption(false); // Reset correctness for the next question
     } else {
       saveQuizHistory();
       alert(`Quiz Completed! Your Score: ${score}`);
@@ -49,7 +61,24 @@ const QuizPage = () => {
         options={questions[currentQuestion]?.options || []}
         handleAnswer={handleAnswer}
         timeLeft={timeLeft}
+        selectedOption={selectedOption}
+        isCorrectOption={isCorrectOption}
       />
+      {/* Show correct answer and next button */}
+      <div>
+        {(selectedOption !== null || timeLeft === 0) && (
+          <p className="mt-4">
+            Correct Option:{" "}
+            {questions[currentQuestion]?.options.find((o) => o.isCorrect)?.text}
+          </p>
+        )}
+        <button
+          className="px-4 py-2 bg-blue-500 hover:bg-blue-400 text-white rounded mt-2"
+          onClick={handleNext}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
