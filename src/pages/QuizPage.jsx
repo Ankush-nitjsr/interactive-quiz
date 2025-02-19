@@ -13,6 +13,7 @@ const QuizPage = () => {
   const [timeLeft, setTimeLeft] = useState(30);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrectOption, setIsCorrectOption] = useState(false);
+  const [inputAnswer, setInputAnswer] = useState(0);
 
   useEffect(() => {
     setQuestions(quizData.questions);
@@ -54,10 +55,14 @@ const QuizPage = () => {
           questions[currentQuestion]?.question || "No question available"
         }
         options={questions[currentQuestion]?.options || []}
+        correctAnswer={questions[currentQuestion]?.correctAnswer || 0}
         handleAnswer={handleAnswer}
         timeLeft={timeLeft}
+        setTimeLeft={setTimeLeft}
         selectedOption={selectedOption}
         isCorrectOption={isCorrectOption}
+        inputAnswer={inputAnswer}
+        setInputAnswer={setInputAnswer}
       />
 
       {/* Display the Footer component */}
@@ -68,6 +73,7 @@ const QuizPage = () => {
         setTimeLeft={setTimeLeft}
         setSelectedOption={setSelectedOption}
         setIsCorrectOption={setIsCorrectOption}
+        setInputAnswer={setInputAnswer}
         saveQuizHistory={saveQuizHistory}
       />
     </div>
