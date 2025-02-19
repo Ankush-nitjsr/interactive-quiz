@@ -9,16 +9,20 @@ export default function OptionButton({
 }) {
   return (
     <button
-      className={`block w-80 px-4 py-2 text-white rounded mt-2 ${
-        timeLeft > 0
+      className={`block w-80 px-4 py-2 text-white rounded mt-2 border border-purple-400 ${
+        selectedOption !== null
           ? selectedOption === option.text
             ? isCorrectOption
-              ? "bg-green-500 cursor-not-allowed" // Green for correct answer
-              : "bg-red-500 cursor-not-allowed" // Red for incorrect answer
-            : selectedOption !== null
-            ? "bg-gray-400 cursor-not-allowed" // Disabled state
-            : "bg-blue-500 hover:bg-amber-500" // Default color
-          : "bg-gray-400 cursor-not-allowed"
+              ? "bg-green-400 cursor-not-allowed"
+              : "bg-red-400 cursor-not-allowed"
+            : option.isCorrect
+            ? "bg-green-400 cursor-not-allowed"
+            : "bg-purple-200 cursor-not-allowed"
+          : timeLeft > 0
+          ? "bg-purple-400 hover:bg-purple-600"
+          : option.isCorrect
+          ? "bg-green-400 cursor-not-allowed"
+          : "bg-purple-200 cursor-not-allowed"
       }`}
       onClick={() => handleAnswer(option.text, option.isCorrect)}
       disabled={selectedOption !== null} // Disable buttons after an answer is selected
