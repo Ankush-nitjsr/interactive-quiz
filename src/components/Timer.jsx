@@ -1,12 +1,24 @@
-/* eslint-disable react/prop-types */
+import PropType from "prop-types";
 import { useEffect } from "react";
+
+/**
+ * Timer component that displays the remaining time and updates it every second.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {number} props.timeLeft - The amount of time left in seconds
+ * @param {Function} props.setTimeLeft - Function to update the time left
+ * @returns {JSX.Element} The rendered Timer component
+ */
 
 export default function Timer({ timeLeft, setTimeLeft }) {
   useEffect(() => {
+    // Update the time left every second
     const timer = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
+    // Clear the interval when the component unmounts
     return () => {
       clearInterval(timer);
     };
@@ -29,3 +41,8 @@ export default function Timer({ timeLeft, setTimeLeft }) {
     </div>
   );
 }
+
+Timer.propTypes = {
+  timeLeft: PropType.number.isRequired,
+  setTimeLeft: PropType.func.isRequired,
+};
