@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import OptionButton from "./ui/OptionButton";
+import PropTypes from "prop-types";
 
-/* eslint-disable react/prop-types */
-const QuizCard = ({
+export default function QuizCard({
   currentQuestion,
   question,
   options,
@@ -14,7 +14,7 @@ const QuizCard = ({
   isCorrectOption,
   inputAnswer,
   setInputAnswer,
-}) => {
+}) {
   const [enteredAnswer, setEnteredAnswer] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false); // Track submission status
 
@@ -106,6 +106,18 @@ const QuizCard = ({
       </div>
     </div>
   );
-};
+}
 
-export default QuizCard;
+QuizCard.propTypes = {
+  currentQuestion: PropTypes.number.isRequired,
+  question: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  correctAnswer: PropTypes.number.isRequired,
+  handleAnswer: PropTypes.func.isRequired,
+  timeLeft: PropTypes.number.isRequired,
+  setTimeLeft: PropTypes.func.isRequired,
+  selectedOption: PropTypes.number,
+  isCorrectOption: PropTypes.bool,
+  inputAnswer: PropTypes.number,
+  setInputAnswer: PropTypes.func,
+};
