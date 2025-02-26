@@ -37,14 +37,14 @@ export default function HistoryPage() {
   }, []);
 
   return (
-    <div className="p-4 flex flex-col space-y-4 justify-center items-center">
-      <nav className="flex justify-center items-center space-x-4">
-        <h1 className="text-2xl font-bold">Quiz Attempt History</h1>
+    <div className="history-page p-4 flex flex-col space-y-4 justify-center items-center">
+      <nav className="flex justify-center items-center p-4 space-x-4">
         <Link to="/" className="bg-purple-500 px-4 py-1 rounded-xl text-white">
           Home
         </Link>
+        <h1 className="text-4xl font-bold">Quiz Attempt History</h1>
       </nav>
-      <div className="flex space-x-4 flex-wrap">
+      <div className="history-container flex flex-wrap justify-center items-center p-2 gap-4 sm:gap-6 md:gap-8">
         {/* Display quiz history or a message if no history is found */}
         {quizHistory.length > 0 ? (
           quizHistory.map((attempt) => (
