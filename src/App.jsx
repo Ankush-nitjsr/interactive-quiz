@@ -7,7 +7,7 @@ import Scoreboard from "./components/Scoreboard";
 
 function App() {
   return (
-    <div className="App flex items-center justify-center h-screen">
+    <div className="App flex items-center justify-center h-screen px-[12rem] py-[1rem]">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
