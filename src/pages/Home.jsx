@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center space-y-6 w-[50%] h-[50%] border border-gray-400 rounded-3xl bg-gradient-to-b from-white to-purple-200">
+    <div className="flex flex-col items-center justify-center space-y-6 w-[60%] h-[50%] border border-gray-400 rounded-3xl bg-gradient-to-b from-white to-purple-200">
       <h1 className="text-3xl font-bold text-fuchsia-800">
         Welcome to the Interactive Quiz
       </h1>
